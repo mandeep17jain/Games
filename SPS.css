@@ -20,7 +20,7 @@ body{
     left: 0%;
 }
 h1{
-    font-family: cursive; 
+    font-family:'Times New Roman', Times, serif; 
     color: #21292c;
     box-shadow: 0.5px 0.5px 40px 20px rgb(13, 23, 30);
      border-radius: 5px;
