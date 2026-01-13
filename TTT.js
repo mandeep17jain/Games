@@ -2,7 +2,10 @@ const btn= document.getElementsByClassName("box");//accessing all required eleme
 const win=document.getElementById("win");
 const reset=document.getElementById("reset");
 const Newbtn =document.getElementById("New");
-
+const OScore=document.getElementById("user-score");
+const XScore=document.getElementById("comp-score");
+const RstScore = document.getElementById("score-reset");
+let Ocount = 0,Xcount=0;
 
 let Chance=true,count=0;//Chance variable to find whose turn(O or X)
 let iswon=false;
@@ -18,6 +21,26 @@ const winPattern=[
     [0,4,8],
     [2,4,6]
 ]
+
+function updateScore(winnerName){
+    if(winnerName == 'O')
+    {
+        Ocount++;
+        OScore.innerText = Ocount;
+    }
+    else
+    {
+        Xcount++;
+        XScore.innerText = Xcount;
+    }
+
+}
+RstScore.addEventListener("click",()=>{
+    OScore.innerText = "0";
+    XScore.innerText = "0";
+    Ocount=0;
+    Xcount=0;
+})
 
 for(let i=0;i<9;i++)
 {
@@ -41,8 +64,11 @@ for(let i=0;i<9;i++)
                     if(btn[winPattern[j][0]].innerHTML === btn[winPattern[j][1]].innerHTML && btn[winPattern[j][0]].innerHTML === btn[winPattern[j][2]].innerHTML)
                     {
                         iswon=true;
-                        win.innerText=` Congratulations ${btn[winPattern[j][0]].innerHTML } is the Winner!!`;
-                       
+                        win.innerText=` Congratulations ${btn[winPattern[j][0]].innerHTML} is the Winner!!`;
+
+                        let winnerName = btn[winPattern[j][0]].innerHTML;
+                        updateScore(winnerName);
+
                         for(let bt of btn)//disable all buttons after win
                         {
                            bt.disabled=true;
